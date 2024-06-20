@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import Dashboard from './Dashboard';
 import KudosBoard from './KudosBoard';
@@ -27,7 +27,7 @@ const Footer = () => {
 const App = () => {
   const [kudosBoards, setKudosBoards] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const history = useHistory();
+  // const history = useHistory();
 
   const fetchKudosBoards = () => {
     fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/kudos-board`)
@@ -74,6 +74,10 @@ const App = () => {
     fetchKudosBoards()
   }, []);
 
+  const viewKudosBoard = (id) => {
+    history.push(`/kudos-board/${id}`);
+  };
+
   const deleteKudosBoard = (id) => {
     return fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/kudos-board/${id}`, {
       method: 'DELETE',
@@ -90,22 +94,35 @@ const App = () => {
   };
 
   return (
-    <div className="app">
-      <Header />
-      <SearchBar />
-      <Dashboard setShowModal = {setShowModal}/>
-      <div className="kudos-container">
-      {kudosBoards.map((board) => (
-        <KudosBoard id={board.id} key={board.id} title={board.title} category={board.category} imgUrl={board.imgUrl} onDelete={deleteKudosBoard} />
-      ))}
+    <Router>
+      <div className="app">
+        <Header />
+        <SearchBar />
+          <Route path="/" exact>
+            <Dashboard setShowModal={setShowModal} />
+            <div className="kudos-container">
+              {kudosBoards.map(board => (
+                <KudosBoard
+                  key={board.id}
+                  id={board.id}
+                  title={board.title}
+                  category={board.category}
+                  imgUrl={board.imgUrl}
+                  onDelete={deleteKudosBoard}
+                  onView={viewKudosBoard}
+                />
+              ))}
+            </div>
+            <CreateBoardModal
+              showModal={showModal}
+              setShowModal={setShowModal}
+              createKudosBoard={createKudosBoard}
+            />
+          </Route>
+          <Route path="/kudos-board/:id" component={CardDetails} />
+        <Footer />
       </div>
-      <CreateBoardModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        createKudosBoard={createKudosBoard}
-      />
-      <Footer />
-    </div>
+    </Router>
   );
 };
 export default App;

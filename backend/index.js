@@ -1,5 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
-const e = require('cors');
+// const e = require('cors');
 const prisma = new PrismaClient();
 const cors = require('cors');
 const express = require('express');
@@ -31,6 +31,14 @@ app.get('/kudos-board', async (req, res) => {
     res.status(200).json(kudosBoard)
 });
 
+app.get('/kudos-board/:id', async (req, res) => {
+    const { id } = req.params;
+    const board = await prisma.KudosBoard.findUnique({
+      where: { id: parseInt(id) },
+    });
+    res.status(200).json(board);
+});
+
 app.delete('/kudos-board/:id', async (req, res) => {
     const {id} = req.params;
     console.log(id);
@@ -54,15 +62,18 @@ app.get('/kudos-cards', async (req, res) => {
     res.status(200).json(kudosCard)
 });
 
+app.delete('/kudos-cards/:id', async (req, res) => {
+    const { id } = req.params;
+    await prisma.KudosCard.delete({
+      where: { id: parseInt(id) }
+    });
+    res.status(200).json({ message: 'Card deleted successfully' });
+});
+
+
 
 // app.get('/kudos-cards/KBid', async (req, res) => {});
 // //returning information of each board and all of its cards
-
-// app.delete('/kudos-cards/:id', async (req, res) => {});
-// //deletes a card
-
-// app.delete('/kudos-board/:id', async (req, res) => {});
-// //deletes a board
 
 // app.put('/kudos-cards/:id', async (req, res) => {});
 // //updates a card upvote count
