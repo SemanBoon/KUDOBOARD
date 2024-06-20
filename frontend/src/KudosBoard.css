@@ -1,0 +1,19 @@
+
+.kudos-board {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+    text-align: center;
+  }
+
+  .kudos-board img {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+  }
+
+  .kudos-board button {
+    margin: 5px;
+  }

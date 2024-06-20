@@ -1,0 +1,72 @@
+.app {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.app-header {
+  background-color: #333;
+  color: #fff;
+  padding: 50px;
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 0;
+}
+
+.app-footer {
+  background-color: #333;
+  color: #fff;
+  text-align: right;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.app-footer p {
+  margin: 0;
+}
+
+.search-bar {
+  width: 50%;
+  padding: 10px;
+  margin: 20px auto;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.filter-buttons button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.create-board {
+  margin-top: 10px;
+}
+
+.create-board button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.kudos-container {
+  padding-bottom: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+}
