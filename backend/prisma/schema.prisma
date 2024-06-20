@@ -14,19 +14,19 @@ datasource db {
 }
 
 model KudosBoard {
-  id       Int    @id @unique @default(autoincrement())
-  imgUrl   String
-  title    String
-  category String
-  author   String
+  id Int @id @default(autoincrement()) @unique
+  imgUrl String
+  title String
+  category String
+  author String
 }
 
 model KudosCard {
-  id          Int    @id @unique @default(autoincrement())
-  title       String
-  gifUrl      String
-  KBid        Int
-  description String
-  upvote      Int
-  owner       String
+  id Int @id @default(autoincrement()) @unique
+  title String
+  gifUrl String
+  KBid Int
+  description String
+  upvote Int
+  owner String
 }
