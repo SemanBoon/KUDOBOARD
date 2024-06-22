@@ -4,7 +4,8 @@ CREATE TABLE "KudosBoard" (
     "imgUrl" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "category" TEXT NOT NULL,
-    "author" TEXT NOT NULL,
+    "author" TEXT,
+    "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "KudosBoard_pkey" PRIMARY KEY ("id")
 );
@@ -16,8 +17,8 @@ CREATE TABLE "KudosCard" (
     "gifUrl" TEXT NOT NULL,
     "KBid" INTEGER NOT NULL,
     "description" TEXT NOT NULL,
-    "upvote" INTEGER NOT NULL,
-    "owner" TEXT NOT NULL,
+    "upvote" INTEGER NOT NULL DEFAULT 0,
+    "owner" TEXT,
 
     CONSTRAINT "KudosCard_pkey" PRIMARY KEY ("id")
 );

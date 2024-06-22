@@ -13,20 +13,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model KudosBoard {
-  id Int @id @default(autoincrement()) @unique
-  imgUrl String
-  title String
-  category String
-  author String
+  id Int @id @default(autoincrement()) @unique
+  imgUrl String
+  title String
+  category String
+  author String?
+  timestamp DateTime @default(now())
 }
 
 model KudosCard {
-  id Int @id @default(autoincrement()) @unique
-  title String
-  gifUrl String
-  KBid Int
-  description String
-  upvote Int
-  owner String
+  id Int @id @default(autoincrement()) @unique
+  title String
+  gifUrl String
+  KBid Int
+  description String
+  upvote Int @default(0)
+  owner String?
 }
