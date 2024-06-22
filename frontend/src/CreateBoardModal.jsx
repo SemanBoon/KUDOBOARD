@@ -9,14 +9,14 @@ const CreateBoardModal = ({showModal, setShowModal, createKudosBoard}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (title && category && author) {
+    if (title && category) {
         createKudosBoard(title, category, author);
         setTitle('');
         setCategory('');
         setAuthor('');
         setShowModal(false);
     }
-}
+  }
 
   return (
     <>
@@ -42,7 +42,6 @@ const CreateBoardModal = ({showModal, setShowModal, createKudosBoard}) => {
                 onChange={(event) => setCategory(event.target.value)}
               >
                 <option value="">Select one:</option>
-                <option value="Recent">Recent</option>
                 <option value="Thank You">Thank You</option>
                 <option value="Celebration">Celebration</option>
                 <option value="Inspiration">Inspiration</option>
@@ -52,6 +51,7 @@ const CreateBoardModal = ({showModal, setShowModal, createKudosBoard}) => {
                 type="text"
                 id="author"
                 name="author"
+                placeholder='Enter Author (optional)'
                 value={author}
                 onChange={(event) => setAuthor(event.target.value)}
               /><br /><br />

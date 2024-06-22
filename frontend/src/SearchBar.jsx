@@ -1,8 +1,15 @@
 import React from 'react';
+import './SearchBar.css';
 
-const SearchBar = () => {
+const SearchBar = ({ searchTerm, handleSearch }) => {
   return (
-    <input type="text" placeholder="Search boards..." className="search-bar" />
+    <input
+      type="text"
+      placeholder="Search boards..."
+      value={searchTerm}
+      onChange={handleSearch}
+      className="search-bar"
+    />
   );
 };
 

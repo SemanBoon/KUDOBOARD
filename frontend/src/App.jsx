@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import Dashboard from './Dashboard';
 import KudosBoard from './KudosBoard';
@@ -8,10 +8,18 @@ import CardDetails from './CardDetails';
 import './App.css';
 
 const Header = () => {
+  const location = useLocation();
   return (
+    <>
     <header className="app-header">
+      {location.pathname.includes('/kudos-board/') && (
+        <a href="/" className="back-button">
+          <span className='back-arrow'> ˱ </span>
+        </a>
+        )}
       <h1>KUDOBOARD</h1>
     </header>
+    </>
   );
 };
 
@@ -23,11 +31,40 @@ const Footer = () => {
   );
 };
 
+const Home = ({ setShowModal, kudosBoards, deleteKudosBoard, setFilteredBoards, searchTerm, setSearchTerm }) => {
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredBoards = kudosBoards.filter(board =>
+    board.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  return (
+    <>
+      <SearchBar searchTerm={searchTerm} handleSearch={handleSearch} />
+      <Dashboard setShowModal={setShowModal} setFilteredBoards={setFilteredBoards} />
+      <div className="kudos-container">
+        {filteredBoards.map(board => (
+          <KudosBoard
+            key={board.id}
+            id={board.id}
+            title={board.title}
+            category={board.category}
+            author={board.author}
+            imgUrl={board.imgUrl}
+            onDelete={deleteKudosBoard}
+          />
+        ))}
+      </div>
+    </>
+  );
+};
+
 
 const App = () => {
   const [kudosBoards, setKudosBoards] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const history = useHistory();
+  const [searchTerm, setSearchTerm] = useState('');
 
   const fetchKudosBoards = () => {
     fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/kudos-board`)
@@ -48,7 +85,8 @@ const App = () => {
 
   const createKudosBoard = (title, category, author) => {
     const randomPhoto = `https://picsum.photos/200/300?random=${Math.floor(Math.random() * 1000)}`;
-    return fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/kudos-board`, {
+    return fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/kudos-board`,
+ {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,23 +127,35 @@ const App = () => {
       });
   };
 
+  const setFilteredBoards = (filteredBoards) => {
+    setKudosBoards(filteredBoards);
+  }
+
   return (
-    <div className="app">
-      <Header />
-      <SearchBar />
-      <Dashboard setShowModal = {setShowModal}/>
-      <div className="kudos-container">
-      {kudosBoards.map((board) => (
-        <KudosBoard id={board.id} key={board.id} title={board.title} category={board.category} imgUrl={board.imgUrl} onDelete={deleteKudosBoard} />
-      ))}
+    <Router>
+      <div className="app">
+        <Header/>
+        <Routes>
+          <Route path="/" element={
+            <Home
+              setShowModal={setShowModal}
+              kudosBoards={kudosBoards}
+              deleteKudosBoard={deleteKudosBoard}
+              setFilteredBoards={setFilteredBoards}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
+          } />
+          <Route path="/kudos-board/:id" element={<CardDetails/>} />
+          </Routes>
+          <CreateBoardModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            createKudosBoard={createKudosBoard}
+          />
+        <Footer />
       </div>
-      <CreateBoardModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        createKudosBoard={createKudosBoard}
-      />
-      <Footer />
-    </div>
+    </Router>
   );
 };
 export default App;

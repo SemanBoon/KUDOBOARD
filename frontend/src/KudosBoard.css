@@ -1,19 +1,45 @@
-
 .kudos-board {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 10px;
-    margin: 10px;
-    width: 250px;
-    text-align: center;
-  }
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 10px;
+  margin: 10px;
+  width: 250px;
+  text-align: center;
+}
 
-  .kudos-board img {
-    width: 100%;
-    height: auto;
-    border-radius: 2px;
-  }
+.kudos-board img {
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
 
-  .kudos-board button {
-    margin: 5px;
-  }
+.kudos-board button {
+  margin: 5px;
+}
+
+.kudos-board .view-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.kudos-board .view-button:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.kudos-board .delete-button {
+  background-color: #007bff;
+  color: #090909;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.kudos-board .delete-button:hover {
+  background-color: #f44336;
+}

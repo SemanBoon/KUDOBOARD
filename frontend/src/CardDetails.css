@@ -1,0 +1,124 @@
+.kudos-board-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+}
+
+.board-title {
+  font-weight: bold;
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.create-card {
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.create-card:hover {
+  background-color: #1879da;
+}
+
+.kudos-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 300px;
+}
+
+.kudos-card {
+  width: 300px;
+  margin: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.kudos-card img {
+  width: 270px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.kudos-card h3 {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.kudos-card p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.kudos-card button {
+  margin: 15px;
+}
+
+.kudos-card .upvote-button {
+  background-color: #007bff;
+  color: #080808;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.kudos-card .delete-button {
+  background-color: #007bff;
+  color: #060606;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.kudos-card .delete-button:hover {
+  background-color: #f44336;
+}
+
+/* .kudos-card {
+  display: flex;
+  justify-content: space-between;
+  transition: all 0.5s ease-in-out;
+}
+
+.kudos-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.kudos-card .upvote-button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.kudos-card .upvote-button:hover {
+  background-color: #3e8e41;
+}
+
+.kudos-card .delete-button {
+  background-color: #f44336;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.kudos-card .delete-button:hover {
+  background-color: #f44336; /* no hover effect */

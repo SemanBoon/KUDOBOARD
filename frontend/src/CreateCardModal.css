@@ -1,0 +1,66 @@
+.card-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 600px;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.card-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.card-board-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-board-info label {
+  margin-top: 10px;
+}
+
+.card-board-info input {
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.gif-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.gif-results img {
+  width: 100px;
+  cursor: pointer;
+}
+
+.gif-results img.selected {
+  border: 2px solid blue;
+}
+
+.submit-button {
+  margin-top: 20px;
+  padding: 10px;
+}
