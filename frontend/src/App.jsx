@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import Dashboard from './Dashboard';
 import KudosBoard from './KudosBoard';
